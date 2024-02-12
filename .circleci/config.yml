@@ -5,7 +5,7 @@ orbs:
 defaults: &defaults
   resource_class: medium+
   docker:
-    - image: golang:1.18
+    - image: golang:1.20
 
 jobs:
   build_and_test: # this can be any name you choose
