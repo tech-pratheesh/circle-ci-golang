@@ -20,7 +20,15 @@ jobs:
           covermode: atomic
           failfast: true
           race: true
-
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: go build -o main .
+      - persist_to_workspace:
+          root: .
+          paths:
+          - bin
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
