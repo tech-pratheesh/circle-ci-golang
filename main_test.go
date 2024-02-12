@@ -6,5 +6,5 @@ import (
 )
 
 func TestPrint(t *testing.T) {
-	fmt.Println("Running test case in")
+	fmt.Println("Running test case in test")
 }
