@@ -5,7 +5,7 @@ orbs:
 defaults: &defaults
   resource_class: medium+
   docker:
-    - image: golang:1.20
+    - image: golang:latest
 
 jobs:
   build_and_test: # this can be any name you choose
@@ -29,6 +29,18 @@ jobs:
           root: .
           paths:
           - bin
+  test: # this can be any name you choose
+    <<: *defaults
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      - go/load-cache # Load cached Go modules.
+      - go/mod-download # Run 'go mod download'.
+      - go/save-cache # Save Go modules to cache.
+      - go/test: # Runs 'go test ./...' but includes extensive parameterization for finer tuning.
+          covermode: atomic
+          failfast: true
+          race: true
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
