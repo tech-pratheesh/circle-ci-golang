@@ -49,3 +49,4 @@ workflows:
   sample:
     jobs:
       - build_and_test
+      - test
